@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TraceDaily</title>
+  <meta name="description" content="Offline attendance and lecture evidence log" />
+
+  <!-- PWA basics -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#121212" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="app-header">
+    <h1>TraceDaily</h1>
+    <p class="subtitle">Evidence-based attendance log</p>
+  </header>
+
+  <main class="app-container">
+
+    <!-- SUBJECT MASTER -->
+    <section id="subjects-section" class="section">
+      <h2>Subjects</h2>
+
+      <form id="subject-form">
+        <input type="text" id="subject-code" placeholder="Subject Code (e.g. CN)" required />
+        <input type="text" id="subject-name" placeholder="Subject Name" required />
+        <input type="text" id="faculty-name" placeholder="Faculty Name" required />
+        <button type="submit">Add Subject</button>
+      </form>
+
+      <ul id="subject-list"></ul>
+    </section>
+
+    <!-- ATTENDANCE LOG -->
+    <section id="logs-section" class="section">
+      <h2>New Attendance Log</h2>
+
+      <form id="log-form">
+        <select id="log-subject" required>
+          <option value="">Select Subject</option>
+        </select>
+
+        <select id="log-status" required>
+          <option value="">Status</option>
+          <option value="PRESENT">Present</option>
+          <option value="ABSENT">Absent</option>
+        </select>
+
+        <input type="file" id="log-photo" accept="image/*" capture="environment" />
+
+        <textarea id="log-notes" placeholder="Optional notes"></textarea>
+
+        <button type="submit">Save Log</button>
+      </form>
+
+      <ul id="logs-list"></ul>
+    </section>
+
+    <!-- ATTENDANCE CALCULATOR -->
+    <section id="calculator-section" class="section">
+      <h2>Attendance Summary</h2>
+      <div id="attendance-summary"></div>
+    </section>
+
+    <!-- SEARCH / EVIDENCE MODE -->
+    <section id="evidence-section" class="section">
+      <h2>Evidence Mode</h2>
+
+      <form id="search-form">
+        <input type="date" id="search-date" />
+        <select id="search-subject">
+          <option value="">All Subjects</option>
+        </select>
+        <button type="submit">Search</button>
+      </form>
+
+      <ul id="evidence-list"></ul>
+    </section>
+
+  </main>
+
+  <!-- JS entry point -->
+  <script src="js/app.js"></script>
+</body>
+</html>

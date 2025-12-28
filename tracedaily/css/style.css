@@ -1,0 +1,144 @@
+/* =========================
+   Global Reset & Base
+========================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f4f4f4;
+  color: #222;
+  line-height: 1.5;
+}
+
+/* =========================
+   App Header
+========================= */
+
+.app-header {
+  background-color: #121212;
+  color: #ffffff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* =========================
+   Layout
+========================= */
+
+.app-container {
+  padding: 1rem;
+}
+
+.section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+/* =========================
+   Forms
+========================= */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+input,
+select,
+textarea,
+button {
+  font-size: 1rem;
+  padding: 0.6rem;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+button {
+  background-color: #121212;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+/* =========================
+   Lists
+========================= */
+
+ul {
+  list-style: none;
+}
+
+li {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0.6rem 0;
+}
+
+/* =========================
+   Evidence Mode (Read-Only)
+========================= */
+
+#evidence-section {
+  border: 2px dashed #999;
+  background-color: #fafafa;
+}
+
+#evidence-section h2 {
+  color: #444;
+}
+
+/* =========================
+   Attendance Warnings
+========================= */
+
+.warning {
+  color: #b00020;
+  font-weight: bold;
+}
+
+/* =========================
+   Larger Screens
+========================= */
+
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 700px;
+    margin: auto;
+  }
+}
