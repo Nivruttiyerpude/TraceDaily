@@ -1,0 +1,83 @@
+const DB_NAME = "TraceDailyDB";
+const DB_VERSION = 1;
+const SUBJECTS_STORE = "subjects";
+const LOGS_STORE = "logs";
+
+/**
+ * Open or upgrade IndexedDB
+ */
+export function openDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+    request.onerror = (e) => reject(e.target.error);
+
+    request.onsuccess = (e) => resolve(e.target.result);
+
+    request.onupgradeneeded = (e) => {
+      const db = e.target.result;
+
+      // Subjects store
+      if (!db.objectStoreNames.contains(SUBJECTS_STORE)) {
+        db.createObjectStore(SUBJECTS_STORE, { keyPath: "id" });
+      }
+
+      // Logs store
+      if (!db.objectStoreNames.contains(LOGS_STORE)) {
+        db.createObjectStore(LOGS_STORE, { keyPath: "id" });
+      }
+    };
+  });
+}
+
+/**
+ * Add a subject
+ */
+export async function addSubject(subject) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(SUBJECTS_STORE, "readwrite");
+    tx.objectStore(SUBJECTS_STORE).add(subject);
+    tx.oncomplete = () => resolve(true);
+    tx.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Fetch all subjects
+ */
+export async function getAllSubjects() {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(SUBJECTS_STORE, "readonly");
+    const request = tx.objectStore(SUBJECTS_STORE).getAll();
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Add a log
+ */
+export async function addLog(log) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(LOGS_STORE, "readwrite");
+    tx.objectStore(LOGS_STORE).add(log);
+    tx.oncomplete = () => resolve(true);
+    tx.onerror = (e) => reject(e.target.error);
+  });
+}
+
+/**
+ * Fetch all logs
+ */
+export async function fetchAllLogs() {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(LOGS_STORE, "readonly");
+    const request = tx.objectStore(LOGS_STORE).getAll();
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = (e) => reject(e.target.error);
+  });
+}

@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>TraceDaily</title>
   <meta name="description" content="Offline attendance and lecture evidence log" />
 
@@ -23,21 +22,56 @@
 
   <main class="app-container">
 
+    <!-- Subjects Section -->
     <section class="section">
       <h2>Subjects</h2>
-      <p>(Subject management coming next)</p>
+      <form id="subject-form">
+        <label>Subject Code:
+          <input type="text" id="subject-code" required>
+        </label>
+        <label>Subject Name:
+          <input type="text" id="subject-name" required>
+        </label>
+        <label>Faculty Name:
+          <input type="text" id="faculty-name" required>
+        </label>
+        <button type="submit">Add Subject</button>
+      </form>
+      <ul id="subject-list"></ul>
     </section>
 
+    <!-- Attendance Log Section -->
     <section class="section">
       <h2>New Attendance Log</h2>
-      <p>(Attendance logging coming next)</p>
+      <form id="attendance-form">
+        <label>Subject:
+          <select id="log-subject" required>
+            <option value="">Select Subject</option>
+          </select>
+        </label>
+        <label>Status:
+          <select id="attendance-status" required>
+            <option value="PRESENT">Present</option>
+            <option value="ABSENT">Absent</option>
+          </select>
+        </label>
+        <label>Photo (required if Present):
+          <input type="file" id="attendance-photo" accept="image/*" capture="environment">
+        </label>
+        <label>Notes:
+          <input type="text" id="attendance-notes">
+        </label>
+        <button type="submit">Add Log</button>
+      </form>
     </section>
 
+    <!-- Attendance Summary -->
     <section class="section">
       <h2>Attendance Summary</h2>
-      <p>(Calculator coming next)</p>
+      <p>(Summary will appear here)</p>
     </section>
 
+    <!-- Evidence Section -->
     <section id="evidence-section" class="section">
       <h2>Evidence Mode</h2>
       <p>(Read-only evidence view)</p>

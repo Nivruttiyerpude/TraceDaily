@@ -1,8 +1,16 @@
 import { initDB } from "./db/indexeddb.js";
+import { initSubjectsUI } from "./ui/subjects-ui.js";
+import { initLogsUI } from "./ui/logs-ui.js";
+import { initEvidenceUI } from "./ui/evidence-ui.js";
+import { initAttendanceUI } from "./ui/attendance-ui.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   registerServiceWorker();
   await initDB();
+  initSubjectsUI();
+  initLogsUI();
+  initEvidenceUI();
+  initAttendanceUI();
   console.log("TraceDaily ready");
 });
 
@@ -10,11 +18,7 @@ function registerServiceWorker() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("./service-worker.js")
-      .then(() => {
-        console.log("Service Worker registered");
-      })
-      .catch((error) => {
-        console.error("Service Worker registration failed:", error);
-      });
+      .then(() => console.log("Service Worker registered"))
+      .catch((err) => console.error("SW failed", err));
   }
 }
